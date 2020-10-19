@@ -1,6 +1,7 @@
 const path = require('path');
 const { resolve } = path;
 const htmlPlugin = require('html-webpack-plugin');
+const AntDesignThemePlugin = require('antd-theme-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -56,7 +57,7 @@ module.exports = {
                 'link-color': '#1DA57A',
                 'border-radius-base': '2px',
               },
-              javascriptEnabled: true
+              javascriptEnabled: true,
             }
           }
         }]
@@ -81,5 +82,18 @@ module.exports = {
       template: './index.html',
       filename: 'index.html'
     }),
+    new AntDesignThemePlugin({
+      antDir: path.join(__dirname, './node_modules/antd'),//antd包位置
+      stylesDir: path.join(__dirname, './src/styles/theme'),//指定皮肤文件夹
+      varFile: path.join(__dirname, './src/styles/theme/variables.less'),//自己设置默认的主题色
+      indexFileName: './index.html',
+      mainLessFile: path.join(__dirname, './src/styles/theme/index.less'),
+      outputFilePath: path.join(__dirname, './dist/color.less'),//输出到什么地方
+      themeVariables: [//这里写要改变的主题变量
+        '@primary-color',
+        '@btn-primary-bg',
+      ],
+      generateOnce: false
+    })
   ]
 }

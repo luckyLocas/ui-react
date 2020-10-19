@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import Loadable from 'react-loadable';
 import { Layout } from 'antd';
+import { ChromePicker } from 'react-color';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from '@ant-design/icons';
 import MenuSlider from './menu'
+import SketchExample from './setTheme'
 import './index.less'
 
 const { Header, Sider, Content } = Layout;
@@ -23,22 +25,13 @@ export default (loader, loading = loadingComponent) => {
 
   function toggle() {
     setCollapsed(!collapsed)
-    window.less.modifyVars({
-      '@primary-color': '#406088',
-      '@layout-header-padding': '0px'
-    })
-      .then(() => {
-        consolr.log('color');
-      })
-      .catch(error => {
-        console.log('error');
-      });
   };
 
   const LoadableComponent = Loadable({
     loader,
     loading
   });
+
   return <Layout className='homeContainer'>
     <Sider trigger={null} collapsible collapsed={collapsed}>
       <div className="logo" />
@@ -50,6 +43,7 @@ export default (loader, loading = loadingComponent) => {
           className: 'trigger',
           onClick: toggle,
         })}
+        <SketchExample />
         <h2 className='headerTitle'>哈哈哈哈</h2>
       </Header>
       <Content

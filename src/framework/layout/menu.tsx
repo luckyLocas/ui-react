@@ -20,7 +20,7 @@ function MenuSider() {
    * 组装菜单项
    */
   function renderMenu() {
-    const menuList = [];
+    const menuList: JSX.Element[] = [];
     routerConfig.map((item, index) => {
       if (item.leftMenu) {
         if (item.children) {
@@ -48,7 +48,7 @@ function MenuSider() {
   console.log('history', openkey, selectkey);
 
   return (
-    <Menu theme="dark" mode="inline" selectedKeys={selectkey ? selectkey : 'home'} defaultOpenKeys={openkey}>
+    <Menu theme="dark" mode="inline" selectedKeys={selectkey ? [selectkey] : ['home']} defaultOpenKeys={openkey}>
       {renderMenu()}
     </Menu>
   );

@@ -10,16 +10,18 @@ function SketchExample() {
   const [showColor, setShowCurColor] = useState(false)
 
   //更换主题颜色
-  function handleChangeComplete(color) {
+  function handleChangeComplete(color: { hex: string }) {
+    console.log('color', color)
     setCurColor(color.hex);
-    console.log('color.hex', color.hex)
-    window.less.modifyVars(
+    console.log('color.hex', color.hex);
+    (window as any).less.modifyVars(
       {
         '@primary-color': `${color.hex}!important`,
         '@btn-primary-bg': `${color.hex}!important`,
+        '@new-bg': `${color.hex}!important`,
       }
     ).then(() => { console.log('success') })
-      .catch(error => {
+      .catch((error: string) => {
         console.log(error);
       });
   };

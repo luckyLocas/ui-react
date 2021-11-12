@@ -4,6 +4,11 @@ import { useHistory } from "react-router-dom";
 import { setStore } from 'framework/utils/localStorage';
 import './index.less'
 
+interface IValues {
+  username: string,
+  password: string | number,
+}
+
 function Login() {
   const history = useHistory();
   const layout = {
@@ -14,7 +19,7 @@ function Login() {
     wrapperCol: { offset: 6, span: 16 },
   };
 
-  function loginFun(values) {
+  function loginFun(values: IValues) {
     console.log('values', values);
     setStore('token', true);
     history.push('/home');

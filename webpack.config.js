@@ -4,10 +4,11 @@ const htmlPlugin = require('html-webpack-plugin');
 const AntDesignThemePlugin = require('antd-theme-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, './dist'),
+    chunkFilename: '[name].bundle.js?v=[hash]',
     publicPath: '/'
   },
   devServer: {
@@ -18,6 +19,7 @@ module.exports = {
     historyApiFallback: true  //缺少该配置，会出现上面的错误
   },
   resolve: {
+    extensions: ['.tsx', '.ts', '.js', '.html'],
     //配置别名，在项目中可缩减引用路径
     alias: {
       '@': resolve('src'),
@@ -29,9 +31,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        use: 'babel-loader',
-        exclude: '/node_modules'
+        test: /\.tsx?$/,
+        use: [{
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+          },
+        },],
+        exclude: /node_modules/,
       },
       {
         test: /\.(css)$/,
@@ -55,6 +62,7 @@ module.exports = {
               modifyVars: {
                 'primary-color': '#1DA57A',
                 'link-color': '#1DA57A',
+                'new-bg': '#1DA57A',
                 'border-radius-base': '2px',
               },
               javascriptEnabled: true,

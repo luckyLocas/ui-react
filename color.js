@@ -12,7 +12,8 @@ const options = {
     '@text-color',
     '@text-color-secondary',
     '@heading-color',
-    '@layout-body-background'
+    '@layout-body-background',
+    '@new-bg',
   ],
   indexFileName: 'index.html',
   outputFilePath: path.join(__dirname, './color.less') //页面引入的主题变量文件

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Loadable from 'react-loadable';
 import { Layout } from 'antd';
-import { ChromePicker } from 'react-color';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -12,7 +11,7 @@ import './index.less'
 
 const { Header, Sider, Content } = Layout;
 //通用的过场组件
-const loadingComponent = (error) => {
+const loadingComponent = (error: any) => {
   if (error) return null;
   return (
     <div>加载中...</div>
@@ -20,7 +19,7 @@ const loadingComponent = (error) => {
 }
 
 //过场组件默认采用通用的，若传入了loading，则采用传入的过场组件
-export default (loader, loading = loadingComponent) => {
+export default (loader: any, loading = loadingComponent) => {
   const [collapsed, setCollapsed] = useState(false)
 
   function toggle() {

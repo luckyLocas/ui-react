@@ -6,7 +6,7 @@ import store from './store'
 import './app.less';
 
 class Index extends React.Component {
-  render() {
+  render() { 
     return <Provider store={store}>
       <PageRouter />
     </Provider>
